@@ -1,0 +1,4 @@
+
+lame --decode demo.mp3 demo.mp3.wav
+
+sox -v 0.5 demo.mp3.wav -t wav  -r 8000 -c 1 demo.wav

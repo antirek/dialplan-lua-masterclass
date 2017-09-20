@@ -1,0 +1,5 @@
+#!/bin/bash
+
+dockerId=$(docker ps -f="name=dialplanluamasterclass_redis" -q)
+
+docker exec -it $dockerId redis-cli $1

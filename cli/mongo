@@ -1,0 +1,5 @@
+#!/bin/bash
+
+dockerId=$(docker ps -f="name=dialplanluamasterclass_mongodb" -q)
+
+docker exec -it $dockerId mongo $1

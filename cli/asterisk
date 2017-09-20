@@ -1,0 +1,5 @@
+#!/bin/bash
+
+dockerId=$(docker ps -f="name=dialplanluamasterclass_asterisk" -q)
+
+docker exec -it $dockerId asterisk $1

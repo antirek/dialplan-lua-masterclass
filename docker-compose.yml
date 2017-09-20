@@ -1,0 +1,47 @@
+version: '2'
+services:
+  mongodb:
+    image: mongo:3.4
+    ports:
+      - "27017:27017"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/var/store/mongodb/db:/data/db"
+    restart: always
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "./store/redis/etc/redis/:/usr/local/etc/redis/"
+      - "/var/store/redis/:/data"
+    restart: always
+
+  asterisk:
+    build: ./dockerfiles/asterisk/
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "./store/asterisk/etc/asterisk/:/etc/asterisk/"
+      - "/var/log/asterisk/:/var/log/asterisk"
+    restart: always
+    network_mode: "host"
+    depends_on:
+      - mongodb
+      - redis
+
+  manager:
+    build: ./dockerfiles/manager/
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "./store/manager/etc/manager/:/etc/manager/"
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=default
+      - NODE_CONFIG_DIR=/etc/manager
+    depends_on:
+      - mongodb
+      - redis

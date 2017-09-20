@@ -1,0 +1,4 @@
+127.0.0.1	redis
+127.0.0.1	mongodb
+127.0.0.1	asterisk
+127.0.0.1	manager
