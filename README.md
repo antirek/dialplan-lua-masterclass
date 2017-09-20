@@ -7,9 +7,9 @@
 
 ## Установка
 
-> git clone https://github.com/antirek/lua-dialplan-masterclass
+> git clone https://github.com/antirek/dialplan-lua-masterclass
 
-> cd lua-dialplan-masterclass 
+> cd dialplan-lua-masterclass 
 
 > docker-compose up
 
